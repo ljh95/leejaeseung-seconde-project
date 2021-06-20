@@ -5,10 +5,13 @@ import {
   setValueReducer,
 } from '../../common/redux-helper';
 
+// Action Type
 export const Types = {
   SetValue: 'auth/SetValue',
   FetchLogin: 'auth/FetchLogin',
   SetUser: 'auth/SetUser',
+  FetchSignup: 'auth/FetchSignup',
+  FetchUser: 'auth/FetchUser',
 };
 
 // Action Creater Function
@@ -22,6 +25,13 @@ export const actions = {
   setUser: name => ({
     type: Types.SetUser,
     name,
+  }),
+  fetchSignup: email => ({
+    type: Types.FetchSignup,
+    email,
+  }),
+  fetchUser: () => ({
+    type: Types.FetchUser,
   }),
 };
 

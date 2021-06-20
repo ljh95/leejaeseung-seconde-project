@@ -7,8 +7,10 @@ import History from '../../common/component/History';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { actions } from '../state';
+import useNeedLogin from '../../common/hook/useNeedLogin';
 
 export default function Search() {
+  useNeedLogin();
   const history = useSelector(state => state.search.history);
   const dispatch = useDispatch();
 

@@ -5,8 +5,10 @@ import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import AuthLayout from '../component/AuthLayout';
 import { useDispatch } from 'react-redux';
 import { actions } from '../state';
+import useBlockLoginUser from '../hook/useBlockLoginUser';
 
 export default function Login() {
+  useBlockLoginUser();
   const dispatch = useDispatch();
   function onFinish({ username, password }) {
     dispatch(actions.fetchLogin(username, password));

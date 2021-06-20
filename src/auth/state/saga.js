@@ -19,12 +19,44 @@ function* fetchLogin({ name, password }) {
   }
 }
 
+function* fetchSignup({ email }) {
+  const { isSuccess, data } = yield call(callApi, {
+    url: '/auth/signup',
+    method: 'post',
+    data: {
+      email,
+    },
+  });
+
+  if (isSuccess && data) {
+    yield put(actions.setUser(data.name));
+  }
+}
+
+function* fetchUser() {
+  const { isSuccess, data } = yield call(callApi, {
+    url: '/auth/user',
+  });
+
+  if (isSuccess && data) {
+    yield put(actions.setUser(data.name));
+  }
+}
+
 // eslint-disable-next-line import/no-anonymous-default-export
 export default function* () {
   yield all([
     takeLeading(
       Types.FetchLogin,
       makeFetchSaga({ fetchSaga: fetchLogin, canCache: false })
+    ),
+    takeLeading(
+      Types.FetchSignup,
+      makeFetchSaga({ fetchSaga: fetchSignup, canCache: false })
+    ),
+    takeLeading(
+      Types.FetchUser,
+      makeFetchSaga({ fetchSaga: fetchUser, canCache: false })
     ),
   ]);
 }
