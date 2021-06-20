@@ -12,6 +12,7 @@ export const Types = {
   SetUser: 'auth/SetUser',
   FetchSignup: 'auth/FetchSignup',
   FetchUser: 'auth/FetchUser',
+  FetchLogout: 'auth/FetchLogout',
 };
 
 // Action Creater Function
@@ -32,6 +33,9 @@ export const actions = {
   }),
   fetchUser: () => ({
     type: Types.FetchUser,
+  }),
+  fetchLogout: () => ({
+    type: Types.FetchLogout,
   }),
 };
 

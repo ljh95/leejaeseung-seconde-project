@@ -43,6 +43,16 @@ function* fetchUser() {
   }
 }
 
+function* fetchLogout() {
+  const { isSuccess, data } = yield call(callApi, {
+    url: '/auth/logout',
+  });
+
+  if (isSuccess) {
+    yield put(actions.setUser(''));
+  }
+}
+
 // eslint-disable-next-line import/no-anonymous-default-export
 export default function* () {
   yield all([
@@ -57,6 +67,10 @@ export default function* () {
     takeLeading(
       Types.FetchUser,
       makeFetchSaga({ fetchSaga: fetchUser, canCache: false })
+    ),
+    takeLeading(
+      Types.FetchLogout,
+      makeFetchSaga({ fetchSaga: fetchLogout, canCache: false })
     ),
   ]);
 }
