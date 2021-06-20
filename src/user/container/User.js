@@ -40,6 +40,10 @@ export default function Search({ match }) {
     dispatch(actions.fetchUserHistory(name));
   }, [dispatch, name]);
 
+  useEffect(() => {
+    return () => dispatch(actions.initialize());
+  }, [dispatch]);
+
   // const isFetched = true;
   const { isFetched, isSlow } = useFetchInfo(Types.FetchUser);
 
